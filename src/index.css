@@ -1,0 +1,189 @@
+:root {
+  /* ===== Renkler ===== */
+  --primary: #4a9eff;
+  --primary-dark: #3a7fd9;
+  --secondary: #7b2cbf;
+  --success: #00d4aa;
+
+  --bg-dark: #0a0a0a;
+  --bg-card: #1a1a1a;
+  --bg-card-hover: #2a2a2a;
+
+  --text-primary: #ffffff;
+  --text-secondary: #999999;
+
+  --border: #333333;
+  --shadow: rgba(74, 158, 255, 0.3);
+
+  /* ===== Ölçek (ANA KONTROL) ===== */
+  --ui: 1;
+
+  /* ===== Spacing ===== */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+
+  /* ===== Radius ===== */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-full: 50%;
+
+  /* ===== Transition ===== */
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ===== 4K Ölçek ===== */
+@media (min-width: 2560px) {
+  :root {
+    --ui: 1.25;
+  }
+}
+
+@media (min-width: 3400px) {
+  :root {
+    --ui: 1.6;
+  }
+}
+
+/* ===== Reset ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ===== Body / Font Rendering ===== */
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+
+  /* Yazı kırılmasını çözen asıl ayar */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background: var(--bg-dark);
+  color: var(--text-primary);
+  font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  line-height: 1.6;
+}
+
+/* ===== Scrollbar ===== */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: var(--radius-sm);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+}
+
+/* ===== Selection ===== */
+::selection {
+  background: var(--primary);
+  color: white;
+}
+
+/* ===== Animations ===== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 8px 32px var(--shadow);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 12px 48px rgba(74, 158, 255, 0.6);
+  }
+}
+
+@keyframes shimmer {
+  0% { background-position: -1000px 0; }
+  100% { background-position: 1000px 0; }
+}
+
+/* ===== Utility ===== */
+.fade-in {
+  animation: fadeIn 0.5s ease-out;
+}
+
+.pulse {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* ===== Touch / Kiosk Güvenliği ===== */
+button,
+a,
+.product-card,
+.category-card,
+[role="button"] {
+  touch-action: manipulation;
+}
+
+/* Dokunmatik aktif hissi */
+.product-card:active,
+.category-card:active,
+button:active {
+  transform: scale(0.98);
+}
+
+/* ===== Minimum dokunma alanı ===== */
+@media (hover: none) and (pointer: coarse) {
+  button, a, [role="button"] {
+    min-height: calc(44px * var(--ui));
+    min-width: calc(44px * var(--ui));
+  }
+}
+
+/* ===== Metin seçimini kapat (kiosk) ===== */
+.no-select {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* ===== Loading Skeleton ===== */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--bg-card) 0%,
+    var(--bg-card-hover) 50%,
+    var(--bg-card) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: var(--radius-md);
+}
+
+/* ===== Performans İyileştirme ===== */
+.product-card,
+.modal-content,
+.voice-avatar {
+  will-change: transform;
+}

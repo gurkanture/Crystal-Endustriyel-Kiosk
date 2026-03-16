@@ -1,0 +1,150 @@
+.product-card {
+  background: var(--bg-card);
+  border: calc(1px * var(--ui)) solid var(--border);
+  border-radius: calc(var(--radius-lg) * var(--ui));
+  overflow: hidden;
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.product-card:hover {
+  transform: translateY(calc(-4px * var(--ui)));
+  border-color: var(--primary);
+  box-shadow: 0 calc(12px * var(--ui)) calc(32px * var(--ui)) rgba(74, 158, 255, 0.3);
+}
+
+/* Product Image */
+.product-image {
+  position: relative;
+  width: 100%;
+  height: calc(220px * var(--ui));
+  background: var(--bg-card-hover);
+  overflow: hidden;
+}
+
+.product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: var(--transition);
+}
+
+.product-card:hover .product-image img {
+  transform: scale(1.05);
+}
+
+.model-badge {
+  position: absolute;
+  top: calc(var(--spacing-sm) * var(--ui));
+  right: calc(var(--spacing-sm) * var(--ui));
+  background: rgba(74, 158, 255, 0.9);
+  color: white;
+  padding: calc(var(--spacing-xs) * var(--ui)) calc(var(--spacing-sm) * var(--ui));
+  border-radius: calc(var(--radius-sm) * var(--ui));
+  font-size: calc(0.75rem * var(--ui));
+  font-weight: 600;
+  backdrop-filter: blur(10px);
+}
+
+/* Product Content */
+.product-content {
+  padding: calc(var(--spacing-md) * var(--ui));
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--spacing-sm) * var(--ui));
+  flex: 1;
+}
+
+.product-name {
+  font-size: calc(1.1rem * var(--ui));
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.product-category {
+  font-size: calc(0.85rem * var(--ui));
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* Quick Specs */
+.quick-specs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: calc(var(--spacing-xs) * var(--ui));
+  margin-top: calc(var(--spacing-xs) * var(--ui));
+}
+
+.spec-item {
+  font-size: calc(0.75rem * var(--ui));
+  color: var(--text-secondary);
+  background: var(--bg-card-hover);
+  padding: calc(var(--spacing-xs) * var(--ui)) calc(var(--spacing-sm) * var(--ui));
+  border-radius: calc(var(--radius-sm) * var(--ui));
+  white-space: nowrap;
+}
+
+/* Detail Button */
+.btn-detail {
+  margin-top: auto;
+  padding: calc(var(--spacing-sm) * var(--ui)) calc(var(--spacing-md) * var(--ui));
+  background: transparent;
+  border: calc(1px * var(--ui)) solid var(--border);
+  color: var(--primary);
+  border-radius: calc(var(--radius-sm) * var(--ui));
+  font-size: calc(0.9rem * var(--ui));
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.btn-detail:hover {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+/* Responsive (dokunmadım, sadece ölçek ekledim) */
+@media (max-width: 768px) {
+  .product-image {
+    height: calc(180px * var(--ui));
+  }
+
+  .product-name {
+    font-size: calc(1rem * var(--ui));
+  }
+}
+
+/* Loading skeleton variant */
+.product-card.skeleton {
+  pointer-events: none;
+}
+
+.product-card.skeleton .product-image {
+  background: linear-gradient(
+    90deg,
+    var(--bg-card) 0%,
+    var(--bg-card-hover) 50%,
+    var(--bg-card) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+.product-card.skeleton .product-name,
+.product-card.skeleton .product-category,
+.product-card.skeleton .btn-detail {
+  background: var(--bg-card-hover);
+  color: transparent;
+  border-radius: calc(var(--radius-sm) * var(--ui));
+  animation: shimmer 1.5s infinite;
+}

@@ -1,0 +1,140 @@
+import React from 'react'
+import './CategoryGrid.css'
+
+const CATEGORIES = [
+  {
+    id: 1,
+    name: 'SOĞUTMA',
+    icon: '❄️',
+    color: '#4a9eff',
+    description: 'Buzdolapları, dondurucular ve soğutma sistemleri',
+    source: 'mutfak.json',
+    image: 'https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?w=600'
+  },
+  {
+    id: 2,
+    name: 'DONDURMA MAKİNELERİ',
+    icon: '🍦',
+    color: '#ff6b9d',
+    description: 'Soft dondurma, sert dondurma ve teşhir vitrinleri',
+    source: 'dondurma.json',
+    image: 'https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=600'
+  },
+  {
+    id: 3,
+    name: 'FIRINLAR',
+    icon: '🔥',
+    color: '#ff9500',
+    description: 'Kombi, konveksiyonlu ve pastane fırınları',
+    source: 'mutfak.json',
+    image: 'https://images.unsplash.com/photo-1574968270354-533f9667fe4f?w=600'
+  },
+  {
+    id: 4,
+    name: 'PİŞİRİCİLER',
+    icon: '🍳',
+    color: '#34c759',
+    description: '700, 900 serisi ve snack pişiricileri',
+    source: 'mutfak.json',
+    image: 'https://images.unsplash.com/photo-1556910110-a5a63dfd393c?w=600'
+  },
+  {
+    id: 5,
+    name: 'BULAŞIK MAKİNELERİ',
+    icon: '💧',
+    color: '#5ac8fa',
+    description: 'Bardak, set altı ve konveyörlü yıkama',
+    source: 'mutfak.json',
+    image: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=600'
+  }
+]
+
+function CategoryGrid({ onCategorySelect }) {
+  return (
+    <div className="category-grid">
+      {CATEGORIES.map(category => (
+        <div
+          key={category.id}
+          onClick={() => onCategorySelect(category)}
+          style={{
+            position: 'relative',
+            height: 'calc(300px * var(--ui))',
+            borderRadius: 'calc(12px * var(--ui))',
+            overflow: 'hidden',
+            cursor: 'pointer',
+            border: 'calc(2px * var(--ui)) solid #333'
+          }}
+        >
+          {/* Arka Plan Resmi */}
+          <img 
+            src={category.image} 
+            alt={category.name}
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              zIndex: 0
+            }}
+            onError={(e) => {
+              console.error('Resim yüklenemedi:', category.image)
+              e.target.style.display = 'none'
+            }}
+          />
+
+          {/* Overlay */}
+          <div style={{
+            position: 'absolute',
+            inset: 0,
+            background: 'linear-gradient(to bottom, rgba(10,10,10,0.6), rgba(10,10,10,0.9))',
+            zIndex: 1
+          }} />
+
+          {/* İçerik */}
+          <div style={{
+            position: 'relative',
+            zIndex: 2,
+            height: '100%',
+            padding: 'calc(32px * var(--ui))',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            textAlign: 'center',
+            gap: 'calc(16px * var(--ui))',
+            color: 'white'
+          }}>
+            <div style={{ fontSize: 'calc(64px * var(--ui))' }}>
+              {category.icon}
+            </div>
+
+            <h3 style={{ 
+              fontSize: 'calc(24px * var(--ui))',
+              fontWeight: 600,
+              margin: 0,
+              letterSpacing: '0.04em',
+              textShadow: '0 2px 8px rgba(0,0,0,0.8)'
+            }}>
+              {category.name}
+            </h3>
+
+            <p style={{ 
+              fontSize: 'calc(14px * var(--ui))',
+              opacity: 0.9,
+              margin: 0,
+              maxWidth: 'calc(320px * var(--ui))',
+              lineHeight: 1.4,
+              textShadow: '0 1px 4px rgba(0,0,0,0.8)'
+            }}>
+              {category.description}
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+export default CategoryGrid

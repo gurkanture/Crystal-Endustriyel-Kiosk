@@ -1,0 +1,465 @@
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: calc(var(--spacing-lg) * var(--ui));
+  backdrop-filter: blur(5px);
+  animation: fadeIn 0.2s ease-out;
+}
+
+.modal-content {
+  background: var(--bg-card);
+  border-radius: calc(var(--radius-lg) * var(--ui));
+  max-width: calc(1200px * var(--ui));
+  width: 100%;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--border);
+  animation: fadeIn 0.3s ease-out;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+/* Genişletilmiş Modal - Çoklu Model için */
+.modal-content.modal-wide {
+  max-width: calc(1500px * var(--ui));
+  width: 95%;
+}
+
+/* Header */
+.modal-header {
+  padding: calc(var(--spacing-lg) * var(--ui));
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: calc(var(--spacing-md) * var(--ui));
+}
+
+.modal-header h2 {
+  font-size: calc(1.5rem * var(--ui));
+  color: var(--text-primary);
+  margin: 0;
+  flex: 1;
+}
+
+.btn-close {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  font-size: calc(1.5rem * var(--ui));
+  cursor: pointer;
+  padding: calc(var(--spacing-xs) * var(--ui));
+  border-radius: calc(var(--radius-sm) * var(--ui));
+  transition: var(--transition);
+  width: calc(36px * var(--ui));
+  height: calc(36px * var(--ui));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-close:hover {
+  background: var(--bg-card-hover);
+  color: var(--text-primary);
+}
+
+/* Body */
+.modal-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: calc(var(--spacing-lg) * var(--ui));
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: calc(var(--spacing-xl) * var(--ui));
+}
+
+/* Genişletilmiş body - çoklu model için */
+.modal-wide .modal-body {
+  grid-template-columns: 350px 1fr;
+}
+
+/* Image Section */
+.modal-image-section {
+  position: sticky;
+  top: calc(var(--spacing-lg) * var(--ui));
+  height: fit-content;
+}
+
+.modal-image-section img {
+  width: 100%;
+  max-height: calc(400px * var(--ui));
+  object-fit: contain;
+  border-radius: calc(var(--radius-md) * var(--ui));
+  background: var(--bg-card-hover);
+  padding: calc(var(--spacing-md) * var(--ui));
+}
+
+.btn-catalog {
+  display: block;
+  margin-top: calc(var(--spacing-md) * var(--ui));
+  padding: calc(var(--spacing-sm) * var(--ui)) calc(var(--spacing-md) * var(--ui));
+  background: var(--primary);
+  color: white;
+  text-align: center;
+  border-radius: calc(var(--radius-sm) * var(--ui));
+  font-size: calc(0.95rem * var(--ui));
+}
+
+/* Info */
+.modal-info-section {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--spacing-lg) * var(--ui));
+}
+
+.info-badge {
+  padding: calc(var(--spacing-md) * var(--ui));
+  background: var(--bg-card-hover);
+  border-radius: calc(var(--radius-md) * var(--ui));
+  border-left: calc(3px * var(--ui)) solid var(--primary);
+}
+
+.badge-label {
+  font-size: calc(0.85rem * var(--ui));
+  color: var(--text-secondary);
+}
+
+.badge-value {
+  font-size: calc(1rem * var(--ui));
+  color: var(--text-primary);
+}
+
+/* Properties */
+.properties-section h3,
+.models-section h3 {
+  font-size: calc(1.2rem * var(--ui));
+  color: var(--primary);
+  margin-bottom: calc(var(--spacing-md) * var(--ui));
+}
+
+.properties-list li {
+  padding-left: calc(var(--spacing-lg) * var(--ui));
+  line-height: 1.6;
+  font-size: calc(0.95rem * var(--ui));
+}
+
+/* Models */
+.model-card {
+  padding: calc(var(--spacing-md) * var(--ui));
+  border-radius: calc(var(--radius-md) * var(--ui));
+}
+
+.model-name {
+  font-size: calc(1.1rem * var(--ui));
+  margin-bottom: calc(var(--spacing-md) * var(--ui));
+}
+
+.specs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(calc(220px * var(--ui)), 1fr));
+  gap: calc(var(--spacing-md) * var(--ui));
+}
+
+.spec-item {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--spacing-xs) * var(--ui));
+}
+
+.spec-label {
+  font-size: calc(0.85rem * var(--ui));
+  color: var(--text-secondary);
+}
+
+.spec-value {
+  font-size: calc(1rem * var(--ui));
+  color: var(--text-primary);
+}
+
+/* Footer */
+.modal-footer {
+  padding: calc(var(--spacing-lg) * var(--ui));
+  gap: calc(var(--spacing-md) * var(--ui));
+  display: flex;
+  justify-content: flex-end;
+  border-top: 1px solid var(--border);
+}
+
+.btn-action {
+  padding: calc(var(--spacing-sm) * var(--ui)) calc(var(--spacing-lg) * var(--ui));
+  font-size: calc(1rem * var(--ui));
+  border-radius: calc(var(--radius-sm) * var(--ui));
+  cursor: pointer;
+  transition: var(--transition);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: calc(var(--spacing-xs) * var(--ui));
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: white;
+  border: none;
+}
+
+.btn-primary:hover {
+  background: var(--primary-hover, var(--primary));
+  opacity: 0.9;
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+}
+
+.btn-secondary:hover {
+  background: var(--bg-card-hover);
+  color: var(--text-primary);
+}
+
+/* ================================
+   MODEL FİLTRE BUTONLARI
+   ================================ */
+.model-filter {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--spacing-md) * var(--ui));
+  flex-wrap: wrap;
+  padding-bottom: calc(var(--spacing-md) * var(--ui));
+  margin-bottom: calc(var(--spacing-md) * var(--ui));
+  border-bottom: 1px solid var(--border);
+}
+
+.filter-label {
+  font-size: calc(0.9rem * var(--ui));
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.model-buttons {
+  display: flex;
+  gap: calc(var(--spacing-sm) * var(--ui));
+  flex-wrap: wrap;
+}
+
+.model-filter-btn {
+  padding: calc(var(--spacing-xs) * var(--ui)) calc(var(--spacing-md) * var(--ui));
+  border-radius: calc(var(--radius-sm) * var(--ui));
+  font-size: calc(0.9rem * var(--ui));
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: var(--bg-card-hover);
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+}
+
+.model-filter-btn:hover {
+  background: var(--bg-card);
+  color: var(--text-primary);
+  border-color: var(--primary);
+}
+
+.model-filter-btn.active {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+  box-shadow: 0 2px 8px rgba(var(--primary-rgb, 59, 130, 246), 0.3);
+}
+
+.model-filter-btn.select-all {
+  background: transparent;
+  color: var(--primary);
+  border-color: transparent;
+  font-size: calc(0.85rem * var(--ui));
+}
+
+.model-filter-btn.select-all:hover {
+  text-decoration: underline;
+}
+
+/* ================================
+   KARŞILAŞTIRMA TABLOSU
+   ================================ */
+.comparison-table-wrapper {
+  overflow-x: auto;
+  border-radius: calc(var(--radius-md) * var(--ui));
+  border: 1px solid var(--border);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: calc(0.9rem * var(--ui));
+}
+
+/* Tablo Header */
+.comparison-table thead tr {
+  background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+}
+
+.comparison-table th {
+  padding: calc(var(--spacing-md) * var(--ui)) calc(var(--spacing-lg) * var(--ui));
+  text-align: center;
+  color: white;
+  font-weight: 600;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.comparison-table th:last-child {
+  border-right: none;
+}
+
+.spec-name-header {
+  text-align: left !important;
+  min-width: calc(180px * var(--ui));
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.model-header {
+  min-width: calc(130px * var(--ui));
+}
+
+.model-header .model-label {
+  display: block;
+  font-size: calc(0.7rem * var(--ui));
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  opacity: 0.7;
+  margin-bottom: calc(var(--spacing-xs) * var(--ui) * 0.5);
+  color: #10b981;
+}
+
+.model-header .model-name-text {
+  display: block;
+  font-size: calc(1rem * var(--ui));
+}
+
+/* Tablo Body */
+.comparison-table tbody tr {
+  transition: background 0.15s ease;
+}
+
+.comparison-table tbody tr.even {
+  background: var(--bg-card);
+}
+
+.comparison-table tbody tr.odd {
+  background: var(--bg-card-hover);
+}
+
+.comparison-table tbody tr:hover {
+  background: rgba(var(--primary-rgb, 59, 130, 246), 0.08);
+}
+
+.comparison-table td {
+  padding: calc(var(--spacing-sm) * var(--ui)) calc(var(--spacing-md) * var(--ui));
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.comparison-table td:last-child {
+  border-right: none;
+}
+
+.spec-name-cell {
+  font-weight: 500;
+  color: var(--text-primary);
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.spec-value-cell {
+  text-align: center;
+  color: var(--text-secondary);
+}
+
+/* Model Sayısı */
+.model-count {
+  margin-top: calc(var(--spacing-sm) * var(--ui));
+  font-size: calc(0.85rem * var(--ui));
+  color: var(--text-secondary);
+  text-align: right;
+}
+
+/* ================================
+   RESPONSIVE
+   ================================ */
+@media (max-width: 1200px) {
+  .modal-content.modal-wide {
+    max-width: 95%;
+  }
+}
+
+@media (max-width: 968px) {
+  .modal-body {
+    grid-template-columns: 1fr;
+  }
+  
+  .modal-wide .modal-body {
+    grid-template-columns: 1fr;
+  }
+  
+  .modal-image-section {
+    position: relative;
+    top: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .modal-overlay {
+    padding: 0;
+  }
+
+  .modal-content {
+    max-height: 100vh;
+    border-radius: 0;
+  }
+  
+  .modal-content.modal-wide {
+    width: 100%;
+  }
+
+  .modal-header h2 {
+    font-size: calc(1.2rem * var(--ui));
+  }
+  
+  .model-filter {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .comparison-table th,
+  .comparison-table td {
+    padding: calc(var(--spacing-xs) * var(--ui)) calc(var(--spacing-sm) * var(--ui));
+    font-size: calc(0.8rem * var(--ui));
+  }
+  
+  .spec-name-header,
+  .spec-name-cell {
+    min-width: calc(120px * var(--ui));
+  }
+  
+  .model-header {
+    min-width: calc(90px * var(--ui));
+  }
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

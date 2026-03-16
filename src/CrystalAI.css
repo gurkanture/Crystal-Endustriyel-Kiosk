@@ -1,0 +1,183 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   CRYSTAL AI - Complete Styles (Kiosk + 4K Safe)
+   Avatar + Subcategory Grid
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   SUBCATEGORY GRID
+   ───────────────────────────────────────────────────────────────────────────── */
+
+.subcategory-view {
+  padding: calc(20px * var(--ui)) 0;
+}
+
+.subcategory-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(calc(280px * var(--ui)), 1fr));
+  gap: calc(16px * var(--ui));
+  padding: calc(20px * var(--ui)) 0;
+}
+
+.subcategory-card {
+  display: flex;
+  align-items: center;
+  gap: calc(16px * var(--ui));
+  padding: calc(20px * var(--ui)) calc(24px * var(--ui));
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.8) 0%, rgba(15, 23, 42, 0.9) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: calc(16px * var(--ui));
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
+  touch-action: manipulation;
+}
+
+.subcategory-card:hover {
+  transform: translateY(calc(-4px * var(--ui)));
+  border-color: rgba(79, 172, 254, 0.5);
+  box-shadow: 0 calc(12px * var(--ui)) calc(40px * var(--ui)) rgba(79, 172, 254, 0.15);
+}
+
+.subcategory-card:active {
+  transform: scale(0.98);
+}
+
+.subcategory-icon {
+  font-size: calc(28px * var(--ui));
+  flex-shrink: 0;
+}
+
+.subcategory-name {
+  flex: 1;
+  font-size: calc(15px * var(--ui));
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.4;
+}
+
+.subcategory-arrow {
+  font-size: calc(18px * var(--ui));
+  color: rgba(79, 172, 254, 0.7);
+  transition: transform 0.3s ease;
+}
+
+.subcategory-card:hover .subcategory-arrow {
+  transform: translateX(calc(4px * var(--ui)));
+  color: #4facfe;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   AVATAR WRAPPER
+   ───────────────────────────────────────────────────────────────────────────── */
+
+.crystal-avatar-wrapper {
+  position: fixed;
+  bottom: calc(100px * var(--ui));
+  right: calc(30px * var(--ui));
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: calc(12px * var(--ui));
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   CRYSTAL ORB
+   ───────────────────────────────────────────────────────────────────────────── */
+
+.crystal-orb {
+  position: relative;
+  width: calc(90px * var(--ui));
+  height: calc(90px * var(--ui));
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  will-change: transform;
+}
+
+.crystal-orb:hover {
+  transform: scale(1.08);
+}
+
+.crystal-orb:active {
+  transform: scale(0.95);
+}
+
+/* Glow */
+.orb-glow {
+  position: absolute;
+  inset: calc(-20px * var(--ui));
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(79, 172, 254, 0.3) 0%, transparent 70%);
+  filter: blur(calc(15px * var(--ui)));
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.crystal-orb.connected .orb-glow {
+  background: radial-gradient(circle, rgba(0, 242, 254, 0.4) 0%, transparent 70%);
+  opacity: 0.8;
+}
+
+.crystal-orb.speaking .orb-glow {
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.5) 0%, transparent 70%);
+  opacity: 1;
+  animation: glowPulse 0.8s ease-in-out infinite;
+}
+
+/* Core */
+.orb-core {
+  position: absolute;
+  inset: calc(20px * var(--ui));
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.9) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 
+    0 calc(8px * var(--ui)) calc(32px * var(--ui)) rgba(0, 0, 0, 0.4),
+    inset 0 calc(2px * var(--ui)) calc(4px * var(--ui)) rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(10px);
+}
+
+.orb-emoji {
+  font-size: calc(28px * var(--ui));
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Transcript */
+.orb-transcript {
+  display: flex;
+  flex-direction: column;
+  gap: calc(6px * var(--ui));
+  max-width: calc(250px * var(--ui));
+}
+
+.transcript-msg {
+  padding: calc(8px * var(--ui)) calc(12px * var(--ui));
+  border-radius: calc(12px * var(--ui));
+  font-size: calc(12px * var(--ui));
+  line-height: 1.4;
+  backdrop-filter: blur(10px);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   CATEGORY HEADER
+   ───────────────────────────────────────────────────────────────────────────── */
+
+.category-header {
+  text-align: center;
+  margin-bottom: calc(24px * var(--ui));
+  padding: calc(24px * var(--ui));
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.6) 0%, rgba(15, 23, 42, 0.8) 100%);
+  border-radius: calc(16px * var(--ui));
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.category-header h2 {
+  font-size: calc(1.8rem * var(--ui));
+}
+
+.category-header p {
+  font-size: calc(14px * var(--ui));
+}
